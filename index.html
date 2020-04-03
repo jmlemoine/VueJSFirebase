@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>VueJS Firebase</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div class="container col-md-6" id="comment">
+            <h2>VueJS Firebase</h2>
+            <br>
+            <div class="card" v-for="message in messages">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5 class="card-title" v-if="message!=editText">{{message.text}}</h5>
+                        <textarea v-else name="name" class="form-control" v-model="messageText"></textarea>
+                        <p class="card-text text-muted">{{message.name}}</p>
+                        <p class="card-text text-muted">{{message.id}}</p>
+                        <div v-if="message!=editText">
+                            <a href="#" class="btn btn-primary" @click.prevent="deleteMessage(message)">Delete</a>
+                            <a href="#" class="btn btn-primary" @click.prevent="editMessage(message)">Editar</a>
+                        </div>
+                        <div v-else>
+                            <a href="#" class="btn btn-primary" @click.prevent="cancelMessage()">Delete</a>
+                            <a href="#" class="btn btn-primary" @click.prevent="updateMessage()">Editar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <hr>
+                <form v-if="!editText" class="form-group" @submit.prevent="storeMessage">
+                    <div>
+                        <textarea name="name" class="form-control" v-model="messageText" placeholder="Message"></textarea>
+                    </div>
+                    
+                    <input type="text" class="form-control" v-model="name" placeholder="Name"><br>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </form>
+            </div>
+
+                
+
+            
+
+            
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyCJ7UOBtkufjn5tHx4UEKJdRtjpCbBo6TE",
+                authDomain: "vuejstutorial-c0480.firebaseapp.com",
+                databaseURL: "https://vuejstutorial-c0480.firebaseio.com",
+                projectId: "vuejstutorial-c0480",
+                storageBucket: "vuejstutorial-c0480.appspot.com",
+                messagingSenderId: "973958804650",
+                appId: "1:973958804650:web:73f85972aa7d0473fd0cd3",
+                measurementId: "G-ZZFMQX7TPB"
+            };
+            firebase.initializeApp(firebaseConfig);
+        </script>
+        <script src="app.js" charset="utf-8"></script>
+
+    </body>
+</html>
